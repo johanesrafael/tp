@@ -4,6 +4,8 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.io.IOException;
+
 import command.Command;
 import constants.Constants;
 import data.TaskList;
@@ -14,6 +16,7 @@ import visualize.Cli;
 import visualize.FancyCli;
 
 public class Duke {
+
 
     private TaskList tasks;
     private final Storage storage;
@@ -58,12 +61,18 @@ public class Duke {
 
     static String dummy;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, OtherException {
         Scanner in = new Scanner(System.in);
         dummy = in.nextLine();
         //new ReadFile("data/courselist11.txt");
         //ReadFile.loadModules();
         //uncomment this line to run program.
         //new Duke(Constants.PATH, Constants.FILENAME).run();
+    
+        Ui.showHelloMessage();
+        Storage.readFile();
+        Parser.handleCommand();
+        Ui.showByeMessage();
     }
+
 }
